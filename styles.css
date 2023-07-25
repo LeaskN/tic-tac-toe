@@ -22,9 +22,12 @@ html, body{
   height: 200px;
   width: 200px;
   cursor: pointer;
+  font-size: 200px;
+  line-height: 200px;
+  text-align: center;
 }
 
 .boardSquare:hover{
   border: 2px solid rgb(0, 187, 187);
-  background-color: rgb(0, 187, 187);
+  background-color: rgb(255, 80, 80);
 }
