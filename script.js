@@ -17,22 +17,20 @@ function clicked(e){
   if(e.target.innerText === ''){
     e.target.innerText = playerTurn;
     currentData[e.target.id] = playerTurn;
-    checkWin();
-    console.log(currentData)
-    checkDraw();
-    swapTurns();
+    if(playable)checkWin();
+    if(playable)checkDraw();
+    if(playable)swapTurns();
   }
 }
 
 function checkWin(){
-  return winningConditions.forEach(condition => {
+  winningConditions.forEach(condition => {
     if(currentData[condition[0]] === currentData[condition[1]] && 
       currentData[condition[0]] === currentData[condition[2]] &&
       currentData[condition[0]] != ''
     ){
       document.getElementById('gameText').innerText = `${playerTurn} Wins!`;
       playable = false;
-      return true;
     }
   });
 }
@@ -46,11 +44,12 @@ function checkDraw(){
 
 function swapTurns(){
   playerTurn = playerTurn === 'X' ? 'O' : 'X';
+  document.getElementById('gameText').innerText = `${playerTurn}'s Turn`;
 }
 
 function restart(){
   currentData = ['', '', '', '', '', '', '', '', ''];
-  swapTurns();
+  playerTurn = 'X';
   Array.from(document.getElementsByClassName('boardSquare')).forEach(square => square.innerText = '');
   document.getElementById('gameText').innerText = `${playerTurn}'s Turn`;
   playable = true;
